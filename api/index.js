@@ -425,9 +425,7 @@ module.exports = async (req, res) => {
         res.status(200).json({
             status: 'Bot is running!',
             timestamp: new Date().toISOString(),
-            bot_name: 'Flipcart Info Bot with Subscription',
-            webhook_url: WEBHOOK_URL ? `${WEBHOOK_URL}/api/webhook` : 'Not set',
-            bot_token_set: !!BOT_TOKEN
+            bot_name: 'Flipcart Info Bot'
         });
     } else {
         res.status(404).json({ error: 'Not found' });
