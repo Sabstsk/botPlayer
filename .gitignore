@@ -63,3 +63,7 @@ jspm_packages/
 .Trashes
 ehthumbs.db
 Thumbs.db
+ 
+
+ README.md
+ DEPLOYMENT_CHECKLIST.md
