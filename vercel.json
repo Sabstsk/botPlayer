@@ -1,7 +1,18 @@
 {
   "functions": {
     "api/index.js": {
-      "maxDuration": 30
+      "maxDuration": 10,
+      "memory": 1024
+    },
+    "api/keepalive.js": {
+      "maxDuration": 5,
+      "memory": 128
     }
-  }
+  },
+  "crons": [
+    {
+      "path": "/api/keepalive",
+      "schedule": "*/5 * * * *"
+    }
+  ]
 }

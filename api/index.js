@@ -290,12 +290,17 @@ You have used your free search. To continue using this bot, please purchase a su
 // Initialize database
 initializeUsersDB();
 
-// Set webhook
+// Set webhook (only if not already set)
 if (WEBHOOK_URL && BOT_TOKEN) {
-    bot.setWebHook(`${WEBHOOK_URL}/api/webhook`).then(() => {
-        console.log('Webhook set successfully');
+    bot.getWebHookInfo().then(info => {
+        const expectedUrl = `${WEBHOOK_URL}/api/webhook`;
+        if (info.url !== expectedUrl) {
+            return bot.setWebHook(expectedUrl);
+        }
+    }).then(() => {
+        console.log('Webhook verified/set successfully');
     }).catch(err => {
-        console.error('Failed to set webhook:', err);
+        console.error('Webhook setup error:', err);
     });
 }
 
@@ -413,13 +418,28 @@ bot.onText(/\/adduser (\d+) (\d+)/, async (msg, match) => {
 
 // Vercel serverless function handler
 module.exports = async (req, res) => {
-    if (req.method === 'POST' && req.url === '/api/webhook') {
+    // Set CORS headers for faster response
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    
+    if (req.method === 'OPTIONS') {
+        res.status(200).end();
+        return;
+    }
+    
+    if (req.method === 'POST') {
         try {
-            bot.processUpdate(req.body);
+            // Respond immediately to Telegram
             res.status(200).json({ ok: true });
+            
+            // Process update asynchronously (don't await)
+            setImmediate(() => {
+                bot.processUpdate(req.body);
+            });
         } catch (error) {
             console.error('Webhook error:', error);
-            res.status(500).json({ error: 'Internal server error' });
+            res.status(200).json({ ok: true }); // Still respond OK to Telegram
         }
     } else if (req.method === 'GET') {
         res.status(200).json({
