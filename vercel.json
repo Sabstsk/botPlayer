@@ -12,11 +12,6 @@
       "dest": "index_subscription.js"
     }
   ],
-  "functions": {
-    "index_subscription.js": {
-      "maxDuration": 30
-    }
-  },
   "env": {
     "BOT_TOKEN": "@bot_token",
     "WEBHOOK_URL": "@webhook_url",
