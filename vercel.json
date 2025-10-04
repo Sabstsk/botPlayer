@@ -2,20 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "index_subscription.js",
+      "src": "./index_subscription.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "index_subscription.js"
+      "dest": "/"
     }
-  ],
-  "env": {
-    "BOT_TOKEN": "@bot_token",
-    "WEBHOOK_URL": "@webhook_url",
-    "API_KEY": "@api_key",
-    "NODE_ENV": "production"
-  }
+  ]
 }
