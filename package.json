@@ -2,10 +2,10 @@
   "name": "flipcart-telegram-bot",
   "version": "1.0.0",
   "description": "Telegram bot for Flipcart store API integration",
-  "main": "index_subscription.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node index_subscription.js",
-    "dev": "nodemon index_subscription.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "dependencies": {
     "node-telegram-bot-api": "^0.64.0",
