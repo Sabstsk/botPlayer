@@ -1,0 +1,17 @@
+{
+  "watch": [
+    "index.js",
+    "package.json",
+    ".env"
+  ],
+  "ignore": [
+    "users.json",
+    "node_modules/",
+    "*.log",
+    "*.tmp",
+    ".git/"
+  ],
+  "ext": "js,json",
+  "delay": 2000,
+  "verbose": true
+}

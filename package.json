@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon --config nodemon.json index.js",
+    "dev:clean": "node index.js",
+    "kill": "taskkill /f /im node.exe & taskkill /f /im nodemon.exe",
+    "fresh": "npm run kill & npm run dev"
   },
   "dependencies": {
     "node-telegram-bot-api": "^0.64.0",

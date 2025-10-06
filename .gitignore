@@ -49,6 +49,11 @@ jspm_packages/
 # dotenv environment variables file
 .env
 
+# Bot data files
+users.json
+*.tmp
+*.temp
+
 # IDE files
 .vscode/
 .idea/
